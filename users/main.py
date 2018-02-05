@@ -98,3 +98,19 @@ def logout(token):
     else:
         return -1
 
+def forgotPassword(username):
+    #TODO add email service to verify email and reset password
+    return
+
+def getUsername(token):
+    connection = dbconnect()
+    username = ''
+    query = "SELECT username from sessiontable WHERE token=%s"
+    args = (token)
+    result = connection.execute(query, args)
+    for each in result:
+        username = each['username']
+    if username == '':
+        return -1
+    else:
+        return username
